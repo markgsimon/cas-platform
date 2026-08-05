@@ -1,6 +1,6 @@
 # CAS Platform — System Design Plan
 
-**Status:** Iteration 2 — ready for final design review (2026-08-05)  
+**Status:** Design complete — Phase 0 frozen (2026-08-05)  
 **Owner:** Mark Simon (`github.com/markgsimon`)  
 **AWS account:** `391647542075` · **Region:** `us-east-1`  
 **Monthly budget cap:** ≤ **$200** (all platform + observability)  
@@ -362,23 +362,23 @@ Yes. Inventory shows apex → S3, www → CloudFront. Browser habit + design cho
 | 2026-08-05 | Grafana Cloud (not self-hosted) |
 | 2026-08-05 | Seed user with nullable password; hash set only via SQL; no register endpoint |
 | 2026-08-05 | All Terraform under `cas-platform/infra` |
+| 2026-08-05 | **Design complete** — Phase 0 system design frozen |
+| 2026-08-05 | Frontend resources: import existing S3/Route53/CloudFront into Terraform (do not recreate) |
+| 2026-08-05 | EC2: prefer `t4g.micro`, fall back to `t3.micro` |
+| 2026-08-05 | www→apex redirect deferred (optional later) |
 
 ---
 
-## 11. Open items (post final review)
+## 11. Open items
 
-Resolved for design freeze pending your read-through:
-- [x] GitHub repo `markgsimon/cas-platform`
-- [x] Canonical URL `https://mgsimon.com`
-- [x] TLS: Let’s Encrypt on nginx
-- [x] Grafana Cloud
-- [x] Seed user / nullable password / SQL-set hash
-- [x] Infra home: `cas-platform/infra`
+**Design:** none — Phase 0 system design is complete.
 
-Remaining implementation choices (not blocking design approval):
-- [ ] Terraform import vs careful adopt for existing S3/Route53/CloudFront
-- [ ] Exact EC2 arch: `t4g.micro` vs `t3.micro` at apply time
-- [ ] www → apex redirect hardening (optional)
+**Implementation defaults (locked):**
+- [x] Import existing S3/Route53/CloudFront into Terraform; do not recreate
+- [x] Prefer `t4g.micro`; fall back to `t3.micro` at apply time
+- [x] www → apex redirect hardening deferred
+
+Next work is implementation (infra modules, pipelines, backend skeleton, website wiring), not further design discovery.
 
 ---
 
@@ -389,3 +389,4 @@ Remaining implementation choices (not blocking design approval):
 | 0 | 2026-08-05 | Initial architecture proposal from design chat |
 | 1 | 2026-08-05 | Iteration 1: inventory, budget $200, observability, local Postgres, frontend IaC, Tailscale-later, pipelines A/B/C |
 | 2 | 2026-08-05 | Iteration 2: ~$23 EC2+RDS, canonical apex, LE/nginx TLS, Grafana Cloud, SQL-only password seed, infra in-repo; repo bootstrap |
+| 3 | 2026-08-05 | Design complete: freeze Phase 0; lock import / t4g preference / defer www redirect |

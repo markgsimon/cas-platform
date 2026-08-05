@@ -22,4 +22,4 @@ Start here: [`docs/system-design-plan.md`](docs/system-design-plan.md)
 
 ## Status
 
-Phase 0 design / scaffolding. Infra and application code land after design freeze.
+**Phase 0 system design is complete** (see `docs/system-design-plan.md`). Next: implement infra, CI/CD, and backend skeleton.
